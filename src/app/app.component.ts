@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Injector,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Heading from '@tiptap/extension-heading';
@@ -41,8 +47,8 @@ import { defaultFontFamilies, loadFont } from './data/font-family.options';
 import { EditorButtonsService } from './services/editor-buttons.service';
 import Youtube from '@tiptap/extension-youtube';
 import Highlight from '@tiptap/extension-highlight';
-import { ImageWithButtons } from './custom-image';
 import { Gapcursor } from '@tiptap/extension-gapcursor';
+import { ImageComponentExtension } from './custom-image';
 
 @Component({
   selector: 'app-root',
@@ -99,7 +105,7 @@ export class AppComponent implements OnDestroy {
       Youtube.configure({}),
       Gapcursor,
       Highlight.configure({}),
-      ImageWithButtons,
+      ImageComponentExtension(this.injector),
     ],
     content:
       '<P>I think where I am not, therefore I am where I do not think.</P>',
@@ -495,7 +501,8 @@ export class AppComponent implements OnDestroy {
     private fb: NonNullableFormBuilder,
     private modalService: NzModalService,
     public message: NzMessageService,
-    public editorButtonService: EditorButtonsService
+    public editorButtonService: EditorButtonsService,
+    private injector: Injector
   ) {}
   // * Form Group
   customStyles = this.fb.group({
