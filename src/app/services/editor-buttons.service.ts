@@ -39,7 +39,7 @@ export class EditorButtonsService {
           .chain()
           .focus()
           .insertContent({
-            type: 'imageWithButtons',
+            type: 'img',
             attrs: {
               src: base64,
             },

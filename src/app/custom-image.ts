@@ -6,7 +6,7 @@ import { ImageComponent } from './image/image.component';
 
 export const ImageComponentExtension = (injector: Injector): Node => {
   return Node.create({
-    name: 'imageWithButtons',
+    name: 'img',
 
     group: 'block',
 
@@ -25,7 +25,7 @@ export const ImageComponentExtension = (injector: Injector): Node => {
     parseHTML() {
       return [
         {
-          tag: 'image-with-buttons',
+          tag: 'img',
         },
       ];
     },
@@ -35,7 +35,7 @@ export const ImageComponentExtension = (injector: Injector): Node => {
     },
 
     renderHTML({ node, HTMLAttributes }) {
-      return ['image-with-buttons', mergeAttributes(HTMLAttributes)];
+      return ['img', mergeAttributes(HTMLAttributes)];
       // const imgElement = document.createElement('img');
       // imgElement.src = node.attrs['src'];
       // imgElement.className = 'image-button-img';
